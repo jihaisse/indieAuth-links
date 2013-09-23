@@ -62,6 +62,37 @@ function indieauth_links_options_page() {
 	<?php
 }
 
+// function to add markup in head section of post types
+if(!function_exists( 'add_twitter_card_info' )) {
+
+	function add_indieauth_links() {
+		global $post;	
+		/* get options */          		
+		$opts = indieauth_links_get_options(); 	
+		if ( is_front_page()||is_home()) {
+			echo "\n".'<!-- indieAuth Links -->'."\n";
+			
+			if ( isset($opts['github']) )  	                   					
+			echo '<link rel="me" id="github">'.$opts['github'].'</link>'."\n";
+			
+			if ( isset($opts['google']) )
+			echo '<link rel="me" id="google">'.$opts['google'].'</link>'."\n";
+			
+			if ( isset($opts['appnet']) )
+			echo '<link rel="me" id="appnet">'.$opts['appnet'].'</link>'."\n";
+			
+			if ( isset($opts['geoloqi']) )
+			echo '<link rel="me" id="geoloqi">'.$opts['geoloqi'].'</link>'."\n";
+			
+			if ( isset($opts['twitter']) )
+			echo '<link rel="me" id="twitter">'.$opts['twitter'].'</link>'."\n";
+			
+			echo '<!-- /indieAuth Links -->'."\n\n"; 
+		} 
+	}
+}
+add_action( 'wp_head', 'add_indieauth_links', 99);
+
 // Retrieve and sanitize options
 function indieauth_links_get_options() {
 	$options = get_option( 'indieauth_links' );
