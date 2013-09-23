@@ -27,7 +27,7 @@ function indieauth_links_settings_action_links( $links, $file ) {
 //The add_action to add onto the WordPress menu.
 add_action('admin_menu', 'indieauth_links_add_options');
 function indieauth_links_add_options() {
-	$page = add_submenu_page( 'options-general.php', 'Custom feed url options', 'Custom feed url', 'manage_options', 'indieauth_links_options', 'indieauth_links_options_page' );
+	$page = add_submenu_page( 'options-general.php', 'indieAuth Links options', 'indieAuth Links', 'manage_options', 'indieauth_links_options', 'indieauth_links_options_page' );
 	register_setting( 'indieauth-links', 'indieauth_links');
 }
 
@@ -35,6 +35,8 @@ function indieauth_links_add_options() {
 function indieauth_links_options_page() {
 	$opts = indieauth_links_get_options();
 	?>
+	<h1>IndieAuth Links configuration</h1>
+	<p>Add links to your profiles</p>
 	<form id="indieauth-links-form" method="post" action="options.php">
 		<?php settings_fields('indieauth-links'); ?>
 		<p>
@@ -72,20 +74,20 @@ if(!function_exists( 'add_twitter_card_info' )) {
 		if ( is_front_page()||is_home()) {
 			echo "\n".'<!-- indieAuth Links -->'."\n";
 			
-			if ( isset($opts['github']) )  	                   					
-			echo '<link rel="me" id="github">'.$opts['github'].'</link>'."\n";
+			if ( isset($opts['github']) && !empty($opts['github']))  	                   					
+			echo '<link rel="me" id="github" href="'.$opts['github'].'" />'."\n";
 			
-			if ( isset($opts['google']) )
-			echo '<link rel="me" id="google">'.$opts['google'].'</link>'."\n";
+			if ( isset($opts['google']) && !empty($opts['google']))
+			echo '<link rel="me" id="google" href="'.$opts['google'].'" />'."\n";
 			
-			if ( isset($opts['appnet']) )
-			echo '<link rel="me" id="appnet">'.$opts['appnet'].'</link>'."\n";
+			if ( isset($opts['appnet']) && !empty($opts['appnet']))
+			echo '<link rel="me" id="appnet" href="'.$opts['appnet'].'" />'."\n";
 			
-			if ( isset($opts['geoloqi']) )
-			echo '<link rel="me" id="geoloqi">'.$opts['geoloqi'].'</link>'."\n";
+			if ( isset($opts['geoloqi']) && !empty($opts['geoloqi']))
+			echo '<link rel="me" id="geoloqi" href="'.$opts['geoloqi'].'" />'."\n";
 			
-			if ( isset($opts['twitter']) )
-			echo '<link rel="me" id="twitter">'.$opts['twitter'].'</link>'."\n";
+			if ( isset($opts['twitter']) && !empty($opts['twitter']))
+			echo '<link rel="me" id="twitter" href="'.$opts['twitter'].'" />'."\n";
 			
 			echo '<!-- /indieAuth Links -->'."\n\n"; 
 		} 
