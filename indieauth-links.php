@@ -41,23 +41,23 @@ function indieauth_links_options_page() {
 		<?php settings_fields('indieauth-links'); ?>
 		<p>
 			<label for="github">GitHub :</label>
-			<input id="github" type="text" name="indieauth_links[github]" class="regular-text" value="<?php echo $opts['github']; ?>" />
+			<input id="github" type="text" name="indieauth_links[github]" class="regular-text" value="<?php echo htmlspecialchars($opts['github']); ?>" />
 		</p>
 		<p>
 			<label for="google">Google :</label>
-			<input id="google" type="text" name="indieauth_links[google]" class="regular-text" value="<?php echo $opts['google']; ?>" />
+			<input id="google" type="text" name="indieauth_links[google]" class="regular-text" value="<?php echo htmlspecialchars($opts['google']); ?>" />
 		</p>
 		<p>
 			<label for="appnet">App.net :</label>
-			<input id="appnet" type="text" name="indieauth_links[appnet]" class="regular-text" value="<?php echo $opts['appnet']; ?>" />
+			<input id="appnet" type="text" name="indieauth_links[appnet]" class="regular-text" value="<?php echo htmlspecialchars($opts['appnet']); ?>" />
 		</p>
 		<p>
 			<label for="geoloqi">Geoloqi :</label>
-			<input id="geoloqi" type="text" name="indieauth_links[geoloqi]" class="regular-text" value="<?php echo $opts['geoloqi']; ?>" />
+			<input id="geoloqi" type="text" name="indieauth_links[geoloqi]" class="regular-text" value="<?php echo htmlspecialchars($opts['geoloqi']); ?>" />
 		</p>
 		<p>
 			<label for="twitter">Twitter :</label>
-			<input id="twitter" type="text" name="indieauth_links[twitter]" class="regular-text" value="<?php echo $opts['twitter']; ?>" />
+			<input id="twitter" type="text" name="indieauth_links[twitter]" class="regular-text" value="<?php echo htmlspecialchars($opts['twitter']); ?>" />
 		</p>
 		<?php submit_button(null, 'primary', '_submit'); ?>
 	</form>
@@ -75,19 +75,19 @@ if(!function_exists( 'add_twitter_card_info' )) {
 			echo "\n".'<!-- indieAuth Links -->'."\n";
 			
 			if ( isset($opts['github']) && !empty($opts['github']))  	                   					
-			echo '<link rel="me" id="github" href="'.$opts['github'].'" />'."\n";
+			echo '<link rel="me" href="'.htmlspecialchars($opts['github']).'" />'."\n";
 			
 			if ( isset($opts['google']) && !empty($opts['google']))
-			echo '<link rel="me" id="google" href="'.$opts['google'].'" />'."\n";
+			echo '<link rel="me" href="'.htmlspecialchars($opts['google']).'" />'."\n";
 			
 			if ( isset($opts['appnet']) && !empty($opts['appnet']))
-			echo '<link rel="me" id="appnet" href="'.$opts['appnet'].'" />'."\n";
+			echo '<link rel="me" href="'.htmlspecialchars($opts['appnet']).'" />'."\n";
 			
 			if ( isset($opts['geoloqi']) && !empty($opts['geoloqi']))
-			echo '<link rel="me" id="geoloqi" href="'.$opts['geoloqi'].'" />'."\n";
+			echo '<link rel="me" href="'.htmlspecialchars($opts['geoloqi']).'" />'."\n";
 			
 			if ( isset($opts['twitter']) && !empty($opts['twitter']))
-			echo '<link rel="me" id="twitter" href="'.$opts['twitter'].'" />'."\n";
+			echo '<link rel="me" href="'.htmlspecialchars($opts['twitter']).'" />'."\n";
 			
 			echo '<!-- /indieAuth Links -->'."\n\n"; 
 		} 
