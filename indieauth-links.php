@@ -65,7 +65,7 @@ function indieauth_links_options_page() {
 }
 
 // function to add markup in head section of post types
-if(!function_exists( 'add_twitter_card_info' )) {
+if(!function_exists( 'add_indieauth_links' )) {
 
 	function add_indieauth_links() {
 		global $post;	
@@ -95,6 +95,32 @@ if(!function_exists( 'add_twitter_card_info' )) {
 }
 add_action( 'wp_head', 'add_indieauth_links', 99);
 
+
+function indieauth_links_get_service_url($service){
+	$services = array(
+		"github" => "https://github.com",
+		"google" => "https://plus.google.com",
+		"appnet" => "https://app.net",
+		"geoloqi" => "https://geoloqi.com",
+		"twitter" => "https://twitter.com"
+	);
+	return $services[$service];
+}
+
+function indieauth_links_secureLink($url, $service){
+	$url = str_replace('http://', 'https://', $url );
+	if (preg_match("/".$service."?/", $url) === 0 && $url !== ''){
+		$url = indieauth_links_get_service_url($service)."/".$url;
+		if ($service === 'twitter'){
+			$url = str_replace('@', '', $url);
+		}
+	}
+	if (preg_match("/https?/", $url) === 0 && $url !== '') {
+    	$url = 'https://'.$url;
+	}
+	return $url;
+}
+
 // Retrieve and sanitize options
 function indieauth_links_get_options() {
 	$options = get_option( 'indieauth_links' );
@@ -109,19 +135,19 @@ function indieauth_links_sanitize_options($options) {
 	return $new;
 
 	if ( isset($options['github']) )
-	$new['github'] = $options['github'];
+	$new['github'] = indieauth_links_secureLink($options['github'], 'github');
 	
 	if ( isset($options['google']) )
-	$new['google'] = $options['google'];
+	$new['google'] = indieauth_links_secureLink($options['google'], 'google');
 	
 	if ( isset($options['appnet']) )
-	$new['appnet'] = $options['appnet'];
+	$new['appnet'] = indieauth_links_secureLink($options['appnet'], 'appnet');
 	
 	if ( isset($options['geoloqi']) )
-	$new['geoloqi'] = $options['geoloqi'];
+	$new['geoloqi'] = indieauth_links_secureLink($options['geoloqi'], 'geoloqi');
 	
 	if ( isset($options['twitter']) )
-	$new['twitter'] = $options['twitter'];
+	$new['twitter'] = indieauth_links_secureLink($options['twitter'], 'twitter');
 	
 	return $new;
 }
