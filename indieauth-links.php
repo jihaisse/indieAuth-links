@@ -5,7 +5,7 @@ Plugin URI: http://jihais.se
 Description: indieAuth Links
 Author: Jean-Sébastien Mansart
 Author URI: http://jihais.se
-Version: 0.1
+Version: 0.1.2
 License: GPL2++
 */
 
