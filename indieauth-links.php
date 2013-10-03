@@ -129,7 +129,13 @@ function indieauth_links_get_options() {
 
 // Sanitize options
 function indieauth_links_sanitize_options($options) {
-	$new = array();
+	$new = array(
+		'github' => "",
+		'google' => "",
+		'appnet' => "",
+		'geoloqi' => "",
+		'twitter' => ""
+	);
 
 	if ( !is_array($options) )
 	return $new;
