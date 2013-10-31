@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: indieAuth Links
-Plugin URI: http://jihais.se
+Plugin URI: https://github.com/jihaisse/indieAuth-links
 Description: indieAuth Links
 Author: Jean-Sébastien Mansart
 Author URI: http://jihais.se
