@@ -47,3 +47,8 @@ When you want to sign in form a web sign in with your domain name, it scan your 
 
 Yes, the assumption is that people are willing to own their online identities in the form of a domain name. It is getting easier and easier to host content on your own domain name. See "Getting Started on the Indie Web"" for some suggestions, including mapping your domain to a Tumblr blog, or signing up for a simple web hosting service like Dreamhost.
 
+== Changelog ==
+
+= 0.2 =
+* 4 Nov. 2013
+* Add support for Persona & SMS

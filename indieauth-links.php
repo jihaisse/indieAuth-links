@@ -5,7 +5,7 @@ Plugin URI: https://github.com/jihaisse/indieAuth-links
 Description: indieAuth Links
 Author: Jean-Sébastien Mansart
 Author URI: http://jihais.se
-Version: 0.1.2
+Version: 0.2
 License: GPL2++
 */
 
@@ -41,7 +41,7 @@ function indieauth_links_options_page() {
 		<?php settings_fields('indieauth-links'); ?>
 		<p>
 			<label for="github">GitHub :</label>
-			<input id="github" type="text" name="indieauth_links[github]" class="regular-text" value="<?php echo htmlspecialchars($opts['github']); ?>" />
+			<input id="github" type="text" name="indieauth_links[github]" class="regular-text" value="<?php echo htmlspecialchars($opts['github']); ?>" placeholder="https://github.com/jihaisse"/>
 		</p>
 		<p>
 			<label for="google">Google :</label>
@@ -57,7 +57,15 @@ function indieauth_links_options_page() {
 		</p>
 		<p>
 			<label for="twitter">Twitter :</label>
-			<input id="twitter" type="text" name="indieauth_links[twitter]" class="regular-text" value="<?php echo htmlspecialchars($opts['twitter']); ?>" />
+			<input id="twitter" type="text" name="indieauth_links[twitter]" class="regular-text" value="<?php echo htmlspecialchars($opts['twitter']); ?>" placeholder="https://twitter.com/jihaisse" />
+		</p>
+		<p>
+			<label for="persona">Persona :</label>
+			<input id="persona" type="text" name="indieauth_links[persona]" class="regular-text" value="<?php echo htmlspecialchars($opts['persona']); ?>" placeholder="me@example.com" />
+		</p>
+		<p>
+			<label for="sms">SMS :</label>
+			<input id="sms" type="text" name="indieauth_links[sms]" class="regular-text" value="<?php echo htmlspecialchars($opts['sms']); ?>" placeholder="+15035551212" />
 		</p>
 		<?php submit_button(null, 'primary', '_submit'); ?>
 	</form>
@@ -88,6 +96,12 @@ if(!function_exists( 'add_indieauth_links' )) {
 			
 			if ( isset($opts['twitter']) && !empty($opts['twitter']))
 			echo '<link rel="me" href="'.htmlspecialchars($opts['twitter']).'" />'."\n";
+			
+			if ( isset($opts['persona']) && !empty($opts['persona']))
+			echo '<link rel="me" href="mailto:'.htmlspecialchars($opts['persona']).'" />'."\n";
+			
+			if ( isset($opts['sms']) && !empty($opts['sms']))
+			echo '<link rel="me" href="sms:'.htmlspecialchars($opts['sms']).'" />'."\n";
 			
 			echo '<!-- /indieAuth Links -->'."\n\n"; 
 		} 
@@ -134,7 +148,9 @@ function indieauth_links_sanitize_options($options) {
 		'google' => "",
 		'appnet' => "",
 		'geoloqi' => "",
-		'twitter' => ""
+		'twitter' => "",
+		'persona' => "",
+		'sms' => ""
 	);
 
 	if ( !is_array($options) )
@@ -154,6 +170,12 @@ function indieauth_links_sanitize_options($options) {
 	
 	if ( isset($options['twitter']) )
 	$new['twitter'] = indieauth_links_secureLink($options['twitter'], 'twitter');
+	
+	if ( isset($options['persona']) )
+	$new['persona'] = $options['persona'];
+	
+	if ( isset($options['sms']) )
+	$new['sms'] = $options['sms'];
 	
 	return $new;
 }
