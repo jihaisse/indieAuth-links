@@ -2,12 +2,21 @@
 /*
 Plugin Name: indieAuth Links
 Plugin URI: https://github.com/jihaisse/indieAuth-links
-Description: indieAuth Links
+Description: indieAuth Links - Deprecated
 Author: Jean-Sébastien Mansart
 Author URI: http://jihais.se
-Version: 0.2
+Version: 0.3
 License: GPL2++
 */
+
+function deprecation_notice() {
+    ?>
+    <div class="notice notice-warning is-dismissible">
+        <p><?php _e( 'The indieAuth Links plugin is deprecated, use the IndieWeb plugin instead : https://wordpress.org/plugins/indieweb/', 'indieauth-links' ); ?></p>
+    </div>
+    <?php
+}
+add_action( 'admin_notices', 'deprecation_notice' );
 
 // Plugin uninstall: delete option
 register_uninstall_hook( __FILE__, 'indieauth_links_uninstall' );

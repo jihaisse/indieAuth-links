@@ -9,6 +9,7 @@ License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 IndieAuth Links enable sign in with your domain name.
+This plugin is deprecated, use the IndieWeb plugin instead : https://wordpress.org/plugins/indieweb/
 
 == Description ==
 
@@ -48,6 +49,10 @@ When you want to sign in form a web sign in with your domain name, it scan your 
 Yes, the assumption is that people are willing to own their online identities in the form of a domain name. It is getting easier and easier to host content on your own domain name. See "Getting Started on the Indie Web"" for some suggestions, including mapping your domain to a Tumblr blog, or signing up for a simple web hosting service like Dreamhost.
 
 == Changelog ==
+
+= 0.3 =
+* 21 Fev. 2017
+* Deprecation notice
 
 = 0.2 =
 * 4 Nov. 2013
